@@ -14,13 +14,14 @@ const AppLayout = ({ children }) => {
         color="white"
         wrap="wrap"
         padding="1.5rem"
+        boxShadow="0px 2px 10px -5px rgba(21,6,5,1)"
       >
         <Flex align="center">
           <Heading as="h1" size="xl">
             <Link as={RwLink} to={routes.home()}>
               <Flex justify="space-between" align="center">
                 <Box as={BsCamera} mr="0.4rem" />
-                Pic
+                Take Your Pic
               </Flex>
             </Link>
           </Heading>
@@ -28,7 +29,7 @@ const AppLayout = ({ children }) => {
         <Link as={RwLink} to={routes.cart()}>
           <IconButton
             variant="ghost"
-            fontSize="32px"
+            fontSize={32}
             aria-label="View Cart"
             icon={RiShoppingCartLine}
           />

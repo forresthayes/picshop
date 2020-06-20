@@ -5,6 +5,8 @@ import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 
 import Routes from 'src/Routes'
 
+import { ContextProvider } from './context'
+
 import './index.css'
 
 ReactDOM.render(
@@ -12,7 +14,9 @@ ReactDOM.render(
     <CSSReset />
     <FatalErrorBoundary page={FatalErrorPage}>
       <RedwoodProvider>
-        <Routes />
+        <ContextProvider>
+          <Routes />
+        </ContextProvider>
       </RedwoodProvider>
     </FatalErrorBoundary>
   </ThemeProvider>,
