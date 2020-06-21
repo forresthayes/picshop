@@ -7,7 +7,7 @@ import { Context } from 'src/context'
 
 const Image = ({ img, i }) => {
   const [hovered, setHovered] = React.useState(false)
-  const { toggleFavorite } = React.useContext(Context)
+  const { toggleFavorite, addToCart } = React.useContext(Context)
 
   function heartIcon() {
     const props = {}
@@ -35,6 +35,7 @@ const Image = ({ img, i }) => {
       icon={RiAddCircleLine}
       color="#43E2FE"
       right="5"
+      onClick={() => addToCart(img)}
     />
   )
 

@@ -2,6 +2,7 @@ const Context = React.createContext()
 
 function ContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = React.useState([])
+  const [cartItems, setCartItems] = React.useState([])
 
   const url =
     'https://raw.githubusercontent.com/forresthayes/pics/master/images.json'
@@ -22,8 +23,12 @@ function ContextProvider({ children }) {
     setAllPhotos(updatedArr)
   }
 
+  function addToCart(newItem) {
+    setCartItems((prevItems) => [...prevItems, newItem])
+  }
+
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>
       {children}
     </Context.Provider>
   )
