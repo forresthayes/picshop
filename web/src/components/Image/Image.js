@@ -2,12 +2,13 @@ import ImgActionIcon from 'src/components/ImgActionIcon'
 import { Box, Image as ChakraImage } from '@chakra-ui/core'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { RiAddCircleLine } from 'react-icons/ri'
+import { FaCheckCircle } from 'react-icons/fa'
 
 import { Context } from 'src/context'
 
 const Image = ({ img, i }) => {
   const [hovered, setHovered] = React.useState(false)
-  const { toggleFavorite, addToCart } = React.useContext(Context)
+  const { toggleFavorite, addToCart, cartItems } = React.useContext(Context)
 
   function heartIcon() {
     const props = {}
@@ -21,7 +22,7 @@ const Image = ({ img, i }) => {
 
     return (
       <ImgActionIcon
-        color="#EA453C"
+        color="tomato"
         left="5"
         onClick={() => toggleFavorite(img.id)}
         {...props}
@@ -29,15 +30,21 @@ const Image = ({ img, i }) => {
     )
   }
 
-  const addIcon = hovered && (
-    <ImgActionIcon
-      ariaLabel="Add to Cart"
-      icon={RiAddCircleLine}
-      color="#43E2FE"
-      right="5"
-      onClick={() => addToCart(img)}
-    />
-  )
+  function addIcon() {
+    const alreadyInCart = cartItems.some((item) => item.id === img.id)
+    const props = {}
+
+    if (alreadyInCart) {
+      props.icon = FaCheckCircle
+      props.ariaLabel = 'Remove from cart'
+    } else if (hovered) {
+      props.icon = RiAddCircleLine
+      props.arialabel = 'Add to cart'
+      props.onClick = () => addToCart(img)
+    }
+
+    return <ImgActionIcon color="#43E2FE" right="5" {...props} />
+  }
 
   return (
     <Box
@@ -50,7 +57,7 @@ const Image = ({ img, i }) => {
     >
       <ChakraImage src={img.url} objectFit="cover" size="100%" />
       {heartIcon()}
-      {addIcon}
+      {addIcon()}
     </Box>
   )
 }
