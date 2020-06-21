@@ -4,11 +4,12 @@ const ImgActionIcon = (props) => {
   return (
     <IconButton
       size="sm"
-      variant="ghost"
+      variant="unstyled"
       fontSize="2rem"
       pos="absolute"
       top="5"
       cursor="pointer"
+      _focus={{}}
       {...props}
     />
   )

@@ -8,7 +8,12 @@ import { Context } from 'src/context'
 
 const Image = ({ img, i }) => {
   const [hovered, setHovered] = React.useState(false)
-  const { toggleFavorite, addToCart, cartItems } = React.useContext(Context)
+  const {
+    toggleFavorite,
+    addToCart,
+    removeFromCart,
+    cartItems,
+  } = React.useContext(Context)
 
   function heartIcon() {
     const props = {}
@@ -37,6 +42,7 @@ const Image = ({ img, i }) => {
     if (alreadyInCart) {
       props.icon = FaCheckCircle
       props.ariaLabel = 'Remove from cart'
+      props.onClick = () => removeFromCart(img.id)
     } else if (hovered) {
       props.icon = RiAddCircleLine
       props.arialabel = 'Add to cart'
