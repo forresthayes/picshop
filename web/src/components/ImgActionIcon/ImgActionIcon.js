@@ -3,8 +3,9 @@ import { IconButton } from '@chakra-ui/core'
 const ImgActionIcon = (props) => {
   return (
     <IconButton
-      variant="unstyled"
-      fontSize="1.8rem"
+      size="sm"
+      variant="ghost"
+      fontSize="2rem"
       pos="absolute"
       top="5"
       cursor="pointer"

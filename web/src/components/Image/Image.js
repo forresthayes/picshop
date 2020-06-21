@@ -3,8 +3,11 @@ import { Box, Image as ChakraImage } from '@chakra-ui/core'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { RiAddCircleLine } from 'react-icons/ri'
 
+import { Context } from 'src/context'
+
 const Image = ({ img, i }) => {
   const [hovered, setHovered] = React.useState(false)
+  const { toggleFavorite } = React.useContext(Context)
 
   const heartIcon = hovered && (
     <ImgActionIcon
@@ -12,6 +15,7 @@ const Image = ({ img, i }) => {
       icon={AiOutlineHeart}
       color="#EA453C"
       left="5"
+      onClick={() => toggleFavorite(img.id)}
     />
   )
   const addIcon = hovered && (
