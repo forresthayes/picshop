@@ -28,10 +28,11 @@ const AppLayout = ({ children }) => {
         </Flex>
         <Link as={RwLink} to={routes.cart()}>
           <IconButton
-            variant="ghost"
+            variant="unstyled"
             fontSize={32}
             aria-label="View Cart"
             icon={RiShoppingCartLine}
+            _focus={{}}
           />
         </Link>
       </Flex>
