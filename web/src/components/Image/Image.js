@@ -1,6 +1,6 @@
 import ImgActionIcon from 'src/components/ImgActionIcon'
 import { Box, Image as ChakraImage } from '@chakra-ui/core'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { RiAddCircleLine } from 'react-icons/ri'
 
 import { Context } from 'src/context'
@@ -9,15 +9,26 @@ const Image = ({ img, i }) => {
   const [hovered, setHovered] = React.useState(false)
   const { toggleFavorite } = React.useContext(Context)
 
-  const heartIcon = hovered && (
-    <ImgActionIcon
-      ariaLabel="Mark as Favorite"
-      icon={AiOutlineHeart}
-      color="#EA453C"
-      left="5"
-      onClick={() => toggleFavorite(img.id)}
-    />
-  )
+  function heartIcon() {
+    const props = {}
+    if (img.isFavorite) {
+      props.icon = AiFillHeart
+      props.araiLabel = 'Unfavorite'
+    } else if (hovered) {
+      props.icon = AiOutlineHeart
+      props.araiaLabel = 'Mark as favorite'
+    }
+
+    return (
+      <ImgActionIcon
+        color="#EA453C"
+        left="5"
+        onClick={() => toggleFavorite(img.id)}
+        {...props}
+      />
+    )
+  }
+
   const addIcon = hovered && (
     <ImgActionIcon
       ariaLabel="Add to Cart"
@@ -37,7 +48,7 @@ const Image = ({ img, i }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <ChakraImage src={img.url} objectFit="cover" size="100%" />
-      {heartIcon}
+      {heartIcon()}
       {addIcon}
     </Box>
   )
