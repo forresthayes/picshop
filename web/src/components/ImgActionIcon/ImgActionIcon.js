@@ -9,7 +9,7 @@ const ImgActionIcon = (props) => {
       pos="absolute"
       top="5"
       cursor="pointer"
-      _focus={{}}
+      _focus=""
       {...props}
     />
   )

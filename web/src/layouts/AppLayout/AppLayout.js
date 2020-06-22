@@ -3,7 +3,15 @@ import { Box, Link, Flex, Heading, IconButton } from '@chakra-ui/core'
 import { RiShoppingCartLine } from 'react-icons/ri'
 import { BsCamera } from 'react-icons/bs'
 
+import { Context } from 'src/context'
+
+import RiShoppingCartFill from './shopping-cart-fill.svg'
+
 const AppLayout = ({ children }) => {
+  const { cartItems } = React.useContext(Context)
+  const cartIcon =
+    cartItems.length > 0 ? RiShoppingCartFill : RiShoppingCartLine
+
   return (
     <>
       <Flex
@@ -31,8 +39,8 @@ const AppLayout = ({ children }) => {
             variant="unstyled"
             fontSize={32}
             aria-label="View Cart"
-            icon={RiShoppingCartLine}
-            _focus={{}}
+            icon={cartIcon}
+            _focus=""
           />
         </Link>
       </Flex>
