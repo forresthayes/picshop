@@ -1,4 +1,4 @@
-import { Link as RwLink, routes } from '@redwoodjs/router'
+import { navigate, Link as RwLink, routes } from '@redwoodjs/router'
 import { Box, Link, Flex, Heading, IconButton } from '@chakra-ui/core'
 import { RiShoppingCartLine } from 'react-icons/ri'
 import { BsCamera } from 'react-icons/bs'
@@ -26,12 +26,15 @@ const AppLayout = ({ children }) => {
       >
         <Flex align="center">
           <Heading as="h1" size="xl">
-            <Link as={RwLink} to={routes.home()}>
-              <Flex justify="space-between" align="center">
-                <Box as={BsCamera} mr="0.4rem" />
-                Take Your Pic
-              </Flex>
-            </Link>
+            <Flex
+              justify="space-between"
+              align="center"
+              cursor="pointer"
+              onClick={() => navigate(routes.home())}
+            >
+              <Box as={BsCamera} mr="0.4rem" />
+              Take Your Pic
+            </Flex>
           </Heading>
         </Flex>
         <Link as={RwLink} to={routes.cart()}>
