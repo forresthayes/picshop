@@ -6,6 +6,11 @@ import { Context } from 'src/context'
 
 const CartPage = () => {
   const { cartItems } = React.useContext(Context)
+  const totalCost = 5.99 * cartItems.length
+  const totalCostDisplay = totalCost.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
 
   const cartItemElements = cartItems.map((item) => (
     <CartItem key={item.id} item={item} />
@@ -19,8 +24,8 @@ const CartPage = () => {
         </Heading>
 
         {cartItemElements}
-        <Text fontWeight="bold" textAlign="right" fontSize="xl">
-          Total:{' '}
+        <Text fontWeight="bold" textAlign="right" fontSize="xl" mt="3rem">
+          Total: {totalCostDisplay}
         </Text>
         <Flex justify="center">
           <Button variant="solid" variantColor="cyan" size="lg">
