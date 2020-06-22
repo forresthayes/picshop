@@ -1,6 +1,15 @@
 import AppLayout from 'src/layouts/AppLayout'
 import CartItem from 'src/components/CartItem'
-import { Flex, Box, Text, Heading, Button, useToast } from '@chakra-ui/core'
+import { navigate, routes } from '@redwoodjs/router'
+import {
+  Flex,
+  Box,
+  Text,
+  Stack,
+  Heading,
+  Button,
+  useToast,
+} from '@chakra-ui/core'
 
 import { Context } from 'src/context'
 
@@ -41,21 +50,38 @@ const CartPage = () => {
         </Heading>
 
         {cartItemElements}
-        <Text fontWeight="bold" textAlign="right" fontSize="xl" mt="3rem">
-          Total: {totalCostDisplay}
-        </Text>
-        <Flex justify="center">
-          <Button
-            isLoading={isSubmitting}
-            loadingText="Submitting"
-            variant="solid"
-            variantColor="cyan"
-            size="lg"
-            onClick={placeOrder}
-          >
-            Place Order
-          </Button>
-        </Flex>
+        {cartItems.length > 0 ? (
+          <>
+            <Text fontWeight="bold" textAlign="right" fontSize="xl" mt="3rem">
+              Total: {totalCostDisplay}
+            </Text>
+            <Flex justify="center">
+              <Button
+                isLoading={isSubmitting}
+                loadingText="Submitting"
+                variant="solid"
+                variantColor="cyan"
+                size="lg"
+                onClick={placeOrder}
+              >
+                Place Order
+              </Button>
+            </Flex>
+          </>
+        ) : (
+          <Stack align="center" mt="10px">
+            <Text textAlign="center" mt="1rem">
+              You have no items in your cart.
+            </Text>
+            <Button
+              variant="solid"
+              variantColor="cyan"
+              onClick={() => navigate(routes.home())}
+            >
+              Pic Some!
+            </Button>
+          </Stack>
+        )}
       </Box>
     </AppLayout>
   )
