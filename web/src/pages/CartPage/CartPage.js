@@ -1,10 +1,33 @@
 import AppLayout from 'src/layouts/AppLayout'
+import CartItem from 'src/components/CartItem'
+import { Flex, Box, Text, Heading, Button } from '@chakra-ui/core'
+
+import { Context } from 'src/context'
 
 const CartPage = () => {
+  const { cartItems } = React.useContext(Context)
+
+  const cartItemElements = cartItems.map((item) => (
+    <CartItem key={item.id} item={item} />
+  ))
+
   return (
     <AppLayout>
-      <h1>CartPage</h1>
-      <p>Find me in ./web/src/pages/CartPage/CartPage.js</p>
+      <Box as="main" p="10px" my="1.5rem" mx="auto" width={['100%', 0.55]}>
+        <Heading textAlign="center" size="2xl">
+          Check out
+        </Heading>
+
+        {cartItemElements}
+        <Text fontWeight="bold" textAlign="right" fontSize="xl">
+          Total:{' '}
+        </Text>
+        <Flex justify="center">
+          <Button variant="solid" variantColor="cyan" size="lg">
+            Place Order
+          </Button>
+        </Flex>
+      </Box>
     </AppLayout>
   )
 }
