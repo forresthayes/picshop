@@ -1,6 +1,10 @@
 import { Flex, IconButton, Image, Text } from '@chakra-ui/core'
 
+import { Context } from 'src/context'
+
 const CartItem = ({ item }) => {
+  const { removeFromCart } = React.useContext(Context)
+
   return (
     <Flex isInline align="center" my="30px">
       <IconButton
@@ -8,6 +12,7 @@ const CartItem = ({ item }) => {
         icon="delete"
         variant="outline"
         size="md"
+        onClick={() => removeFromCart(item.id)}
       />
       <Image
         src={item.url}
@@ -24,14 +29,3 @@ const CartItem = ({ item }) => {
 }
 
 export default CartItem
-
-//   .cart - item {
-//   justify - content: space - between;
-//   align - items: center;
-//   margin: 20px 0;
-// }
-
-// .cart - item img {
-//   margin - right: auto;
-//   margin - left: 10px;
-// }
